@@ -1,5 +1,7 @@
 import Card from "./Card";
 import { useEffect, useState } from "react";
+import { createBrowserHistory } from "history";
+const history = createBrowserHistory();
 let base_url = "https://api.themoviedb.org/3";
 let url =
   base_url +
@@ -17,7 +19,7 @@ export default function MainMovie() {
     fetch(url_set)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data.results);
+        console.log(data.results);
         setMovieData(data.results);
       });
   }, [url_set]);
@@ -29,6 +31,7 @@ export default function MainMovie() {
           base_url +
           "/discover/movie?sort_by=popularity.desc&api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
+        history.push("popular");
         break;
       case "Theatre":
         url =
@@ -36,24 +39,28 @@ export default function MainMovie() {
           "/movie/now_playing" +
           "?api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
+        history.push("theatre");
         break;
       case "Kids":
         url =
           base_url +
           "/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
+        history.push("kids");
         break;
       case "Drama":
         url =
           base_url +
           "/discover/movie?with_genres=18&sort_by=popularity.desc&api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
+        history.push("drama");
         break;
       case "Comedy":
         url =
           base_url +
           "/discover/movie?with_genres=35&sort_by=popularity.desc&api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
+        history.push("comedy");
         break;
     }
     setUrl(url);
@@ -76,11 +83,12 @@ export default function MainMovie() {
   return (
     <>
       <div className='header'>
+        <h2>Movie App</h2>
         <nav>
           <ul>
             {arr.map((item) => (
               <li key={item}>
-                <a href='#' name={item} onClick={(e) => getData(e.target.name)}>
+                <a name={item} onClick={(e) => getData(e.target.name)}>
                   {item}
                 </a>
               </li>
