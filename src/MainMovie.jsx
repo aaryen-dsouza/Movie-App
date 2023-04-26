@@ -88,14 +88,14 @@ export default function MainMovie() {
           <ul>
             {arr.map((item) => (
               <li key={item}>
-                <a name={item} onClick={(e) => getData(e.target.name)}>
+                <a href='#' name={item} onClick={(e) => getData(e.target.name)}>
                   {item}
                 </a>
               </li>
             ))}
           </ul>
         </nav>
-        <form>
+        <form onSubmit={searchMovie}>
           <div className='search-btn'>
             <input
               type='text'
@@ -114,9 +114,7 @@ export default function MainMovie() {
       <div className='container'>
         {movieData.length === 0 ? (
           <>
-            <p className='notfound'>
-              No Data Found... Search for something else
-            </p>
+            <p className='notfound'>Loading...</p>
           </>
         ) : (
           movieData.map((movie) => <Card key={movie.id} info={movie} />)

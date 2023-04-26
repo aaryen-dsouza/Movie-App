@@ -77,9 +77,9 @@ nav ul li a:focus:before {
   width: 0%;
 }
 
-nav ul li a {
+/* nav ul li a {
   cursor: pointer;
-}
+} */
 .search-btn {
   display: flex;
 }
