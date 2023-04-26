@@ -16,12 +16,16 @@ export default function MainMovie() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch(url_set)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.results);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url_set);
+        const data = await response.json();
         setMovieData(data.results);
-      });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [url_set]);
 
   const getData = (movieType) => {
