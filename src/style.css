@@ -20,6 +20,31 @@
 body {
   background-color: var(--primary-color);
 }
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+  background-color: #f5f5f5;
+}
+
+/* #4a4e69 */
+/* #4A4E69 (a dark blue-grey) */
+/* #3D3D3D (a dark grey) */
+/* #2C2C2C (a very dark grey) */
+/* #1A1A1A (a nearly black color)  */
+
+/* Set the appearance of the thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #3d3d3d;
+  border-radius: 5px;
+  height: 60px;
+}
+
+/* Set the appearance of the track */
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
 .header {
   background-color: var(--secondary-color);
   height: 100px;
