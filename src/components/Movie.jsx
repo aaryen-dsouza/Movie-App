@@ -10,7 +10,7 @@ let url =
 
 const arr = ["Popular", "Theatre", "Kids", "Drama", "Comedy"];
 
-export default function MainMovie() {
+export default function Movie() {
   const [movieData, setMovieData] = useState([]);
   const [url_set, setUrl] = useState(url);
   const [search, setSearch] = useState("");
