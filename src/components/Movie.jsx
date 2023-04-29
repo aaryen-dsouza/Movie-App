@@ -1,11 +1,17 @@
 import Card from "./Card";
 import { useEffect, useState } from "react";
-import { createBrowserHistory } from "history";
-const history = createBrowserHistory();
+import { Link } from "react-router-dom";
+
+// import { createBrowserHistory } from "history";
+// const history = createBrowserHistory();
 let base_url = "https://api.themoviedb.org/3";
+// let url =
+//   base_url +
+//   "/discover/movie?sort_by=popularity.desc&api_key=" +
+//   import.meta.env.VITE_MOVIE_API_KEY;
 let url =
   base_url +
-  "/discover/movie?sort_by=popularity.desc&api_key=" +
+  "/trending/movie/day?api_key=" +
   import.meta.env.VITE_MOVIE_API_KEY;
 
 const arr = ["Popular", "Theatre", "Kids", "Drama", "Comedy"];
@@ -28,14 +34,19 @@ export default function Movie() {
     fetchData();
   }, [url_set]);
 
-  const getData = (movieType) => {
+  const handleLogoClick = () => {
+    window.location.reload();
+  };
+
+  const getData = (movieType, event) => {
+    event.preventDefault();
     switch (movieType) {
       case "Popular":
         url =
           base_url +
           "/discover/movie?sort_by=popularity.desc&api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
-        history.push("popular");
+        // history.push("popular");
         break;
       case "Theatre":
         url =
@@ -43,28 +54,28 @@ export default function Movie() {
           "/movie/now_playing" +
           "?api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
-        history.push("theatre");
+        // history.push("theatre");
         break;
       case "Kids":
         url =
           base_url +
           "/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
-        history.push("kids");
+        // history.push("kids");
         break;
       case "Drama":
         url =
           base_url +
           "/discover/movie?with_genres=18&sort_by=popularity.desc&api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
-        history.push("drama");
+        // history.push("drama");
         break;
       case "Comedy":
         url =
           base_url +
           "/discover/movie?with_genres=35&sort_by=popularity.desc&api_key=" +
           import.meta.env.VITE_MOVIE_API_KEY;
-        history.push("comedy");
+        // history.push("comedy");
         break;
     }
     setUrl(url);
@@ -87,12 +98,18 @@ export default function Movie() {
   return (
     <>
       <div className='header'>
-        <h2>Movie App</h2>
+        <Link to='/' onClick={handleLogoClick}>
+          <h2 className='text-2xl font-black'>MOVIE.to</h2>
+        </Link>
         <nav>
           <ul>
             {arr.map((item) => (
               <li key={item}>
-                <a href='#' name={item} onClick={(e) => getData(e.target.name)}>
+                <a
+                  href='#'
+                  name={item}
+                  onClick={(e) => getData(e.target.name, e)}
+                >
                   {item}
                 </a>
               </li>

@@ -2,8 +2,8 @@ import "../index.css";
 
 export default function Register() {
   return (
-    <form>
-      <h1 className='bg-white'>Register</h1>
+    <form className='w-1/2 flex flex-col bg-amoled mx-auto p-6'>
+      <h1 className='text-4xl text-white text-center mb-4'>Register</h1>
       <label htmlFor='name'>Name</label>
       <input
         type='text'
